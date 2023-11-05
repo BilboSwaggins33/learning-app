@@ -1,0 +1,10 @@
+<!doctype html>
+<title>Common Words</title>
+
+<h1>Common Words</h1>
+
+<ul>
+  {% for word, count in common_words %}
+    <li>{{ word }}: {{ count }}</li>
+  {% endfor %}
+</ul>

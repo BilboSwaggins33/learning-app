@@ -1,21 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <title>Concept</title>
+<head>
+  <link rel="stylesheet" type="text/css" href="./static/inputform.css" />
+</head>
+<body>
+  <div class="container">
+    <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Topic: {{concept}}</h2>
 
-<h1>Topic: {{concept}}</h1>
+    <div class="cont">
+      <p style="text-align: center">Transcribe a recording</p>
+      <form method="post" action="/transcript_file" enctype="multipart/form-data">
+        <div class="uploaddiv">
+          <input type="file" name="file" autocomplete="off" required />
+        </div>
+        <p style="text-align: center">
+          <input type="submit" value="Upload file" />
+        </p>
+      </form>
+    </div>
 
-<form action="/get_transcript" method="post">
-  <label for="youtube_link">YouTube Link:</label>
-  <input type="text" id="youtube_link" name="youtube_link" required><br><br>
-  <input type="submit" value="Get Transcript">
-</form>
-<form method="post" action="/transcript_file" enctype="multipart/form-data">
-  <dl>
-    <p>
-      <input type="file" name="file" autocomplete="off" required/>
-    </p>
-  </dl>
-  <p>
-    <input type="submit" value="Upload" />
-  </p>
-</form>
- 
+    <p>Transcribe a youtube video</p>
+    <form action="/get_transcript" method="post">
+      <label for="youtube_link">YouTube Link:</label>
+      <input type="text" id="youtube_link" name="youtube_link" required />
+      <input type="submit" value="Get Transcript" />
+    </form>
+  </div>
+</body>

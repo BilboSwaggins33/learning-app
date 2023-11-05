@@ -8,7 +8,9 @@ from nltk.probability import FreqDist
 
 
 
-def get_summary(full_text):
+
+
+def get_summary(full_text, pes):
     text = full_text
     words = word_tokenize(text)
 
@@ -70,9 +72,9 @@ def get_summary(full_text):
 
     summary = ''
     for sentence in sentences:
-        if (sentence in sentence_value) and (sentence_value[sentence] > (1.6 * average)):
+        if (sentence in sentence_value) and (sentence_value[sentence] > (pes * average)):
             summary += " " + sentence
-    return "This is the summary: " + summary
+    return "Summary: " + summary
 
 
 

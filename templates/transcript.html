@@ -1,15 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <title>Transcript</title>
 
 <h1>Transcript</h1>
 
 {% if transcript %}
-  <p>{{ transcript }}</p>
-
-  <form action="/common_words" method="post">
-    <input type="hidden" name="transcript" value="{{ transcript }}">
-    <input type="submit" value="Get Common Words">
-  </form>
+<p>Summary: {{ transcript }}</p>
+<p>Original Text: {{original_transcript}}</p>
+<form action="/common_words" method="post">
+  <input type="hidden" name="transcript" value="{{ transcript }}" />
+  <input type="submit" value="Get Common Words" />
+</form>
 {% else %}
-  <p>No transcript available.</p>
+<p>No transcript available.</p>
 {% endif %}

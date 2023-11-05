@@ -1,4 +1,4 @@
-#!/Users/nelson/Desktop/hacksc/learning-app/.venv/bin/python3.12
+#!/Users/aaronzhang/Code/learning-app/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -3,7 +3,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from exam import Exam
 from model import summarize_text
 import os
-os.environ["IMAGEIO_FFMPEG_EXE"] = "/usr/bin/ffmpeg"
+#os.environ["IMAGEIO_FFMPEG_EXE"] = "./ffmpeg"
 import moviepy.editor as mp
 import speech_recognition as sr
 import random

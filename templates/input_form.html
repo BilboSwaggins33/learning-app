@@ -4,11 +4,14 @@
   <link rel="stylesheet" type="text/css" href="./static/inputform.css" />
 </head>
 <body>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
   <div class="container">
     <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Topic: {{concept}}</h2>
 
     <div class="cont">
-      <p style="text-align: center">Transcribe a recording</p>
+      <p style="text-align: center">Transcribe a lecture</p>
       <form method="post" action="/transcript_file" enctype="multipart/form-data">
         <div class="uploaddiv">
           <input type="file" name="file" autocomplete="off" required />
@@ -19,11 +22,14 @@
       </form>
     </div>
 
-    <p>Transcribe a youtube video</p>
+    <p>Transcribe a YouTube video</p>
     <form action="/get_transcript" method="post">
       <label for="youtube_link">YouTube Link:</label>
       <input type="text" id="youtube_link" name="youtube_link" required />
       <input type="submit" value="Get Transcript" />
     </form>
+
+    <p>Personal notes</p>
+    <iframe src="https://v2-embednotion.com/CSCI-103-43fa6ba1d4034534b9da4847431fd903?pvs=4"></iframe>  <style>  iframe { width: 100%; height: 500px; border: 2px solid #ccc; border-radius: 10px; padding: none; }  </style>
   </div>
 </body>

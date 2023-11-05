@@ -1,10 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <title>YouTube Transcript Downloader</title>
 
 <h1>YouTube Transcript Downloader</h1>
 
 <form action="/get_transcript" method="post">
   <label for="youtube_link">YouTube Link:</label>
-  <input type="text" id="youtube_link" name="youtube_link" required><br><br>
-  <input type="submit" value="Get Transcript">
+  <input type="text" id="youtube_link" name="youtube_link" required /><br /><br />
+  <input type="submit" value="Get Transcript" />
+</form>
+<form method="post" action="/transcript_file" enctype="multipart/form-data">
+  <dl>
+    <p>
+      <input type="file" name="file" autocomplete="off" required />
+    </p>
+  </dl>
+  <p>
+    <input type="submit" value="Upload" />
+  </p>
 </form>

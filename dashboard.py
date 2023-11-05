@@ -6,6 +6,7 @@ from model import summarize_text
 import moviepy.editor as mp
 import speech_recognition as sr
 import random
+from datetime import datetime
 from werkzeug.utils import secure_filename
 import os
 from rake_nltk import Rake
@@ -30,6 +31,11 @@ def addExam():
     message  = "simple msg"
     name = request.form['course_name']
     date = request.form['course_date']
+    date = datetime.strptime(date, '%Y-%m-%d')
+    today = datetime.today()
+    days_remaining = (date - today).days
+    date = days_remaining
+
     concepts = request.form['course_concepts'].split(" ")
     ex1 = Exam(name, date, concepts)
 
@@ -82,7 +88,17 @@ def get_common_words():
     r.extract_keywords_from_text(transcript_text)
     keywords = r.get_ranked_phrases()[0:10]# Get the 10 most common words
 
-    return render_template('common_words.html', common_words=keywords)
+    bubble_data_words = []
+    # ex.
+
+    length = len(keywords)
+    
+    for x in range(length):
+        left = random.randint(0, 100)  # Adjust these values for random positioning
+        top = random.randint(0, 100)
+        bubble_data_words.append({'left': left, 'top': top, 'keyword' : keywords[x]})
+
+    return render_template('common_words.html', common_words=keywords, bubble_data_words=bubble_data_words)
 
 @app.route("/transcript_file", methods=['POST'])
 def transcribe_file():

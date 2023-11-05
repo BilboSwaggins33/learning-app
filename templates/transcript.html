@@ -4,13 +4,13 @@
 <h1>Transcript</h1>
 
 {% if transcript %}
-  <p>Summary: {{ transcript }}</p>
+  <p><b>Summary:</b> {{ transcript }}</p>
 
   <form action="/key-concepts" method="post">
     <input type="hidden" name="transcript" value="{{ original_transcript }}">
     <input type="submit" value="Get Key Concepts">
   </form>
-  <p>Original Text: {{original_transcript}}</p>
+  <!-- <p>Original Text: {{original_transcript}}</p> -->
 {% else %}
   <p>No transcript available.</p>
 {% endif %}

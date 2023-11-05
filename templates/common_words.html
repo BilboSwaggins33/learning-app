@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<title>Key Phrases</title>
+<html>
+    <head>
 
-<h1>Key Words</h1>
+        <title>Keywords</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            }
 
-<ul>
-    {% for word in common_words %}
-    <li>{{ word }}</li>
-    {% endfor %}
-</ul>
+            .bubble {
+            width: 150px;
+            gap: 30px;
+            height: 150px;
+            background-color: #3498db;
+            border-radius: 50%;
+            cursor: grab;
+            user-drag: none;
+            position: absolute;
+            transition: transform 0.3s, background-color 0.3s;
+
+            }
+
+            .bubble:hover {
+            transform: scale(1.1);
+            background-color: #2980b9;
+            }
+
+            * {
+                font-size: 100%;
+                font-family: 'Poppins';
+            }
+            
+            #concept {
+                background-color: transparent;
+                background-repeat: no-repeat;
+                border: none;
+                outline: none;
+                
+            }
+            #conceptCircle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Keywords</h1>
+        {% for bubble in bubble_data_words %}
+        <div id="conceptCircle" class="bubble" style="left: {{ bubble.left }}%; top: {{ bubble.top }}%;" id="bubble-{{ loop.index }}">
+            <p>{{ bubble.keyword }}</p>
+        </div>
+        {% endfor %}
+
+        
+
+    </body>
+</html>

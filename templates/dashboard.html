@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        #frame {
+            display: flex;
+            gap: 20px;
+            justify-content: start;
+            
+            
+            border-radius: 6px;
+            padding: 20px;
+
+        }
+        #notiSection {
+            width: 30vw;
+            background-color:lightpink;
+            border-radius: 6px;
+            padding: 20px;
+
+        }
+
+        #examSection {
+            width: 70vw;
+            background-color:lightpink;
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        #notiList {
+            list-style-type: none;
+            gap: 10px;
+
+        }
+
+        #examLabel {
+            padding: 8px;
+            border-radius: 6px;
+            background-color: aliceblue;
+            width: 300px;
+            margin-bottom: 8px;
+        }
+        * {
+            font-size: 100%;
+            font-family: 'Poppins';
+        }
+
+        #allExams {
+            width: 70vw;
+            background-color:lightpink;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <h1>{{ title }}</h1>
+    <p>{{ message }}</p> -->
+    <div id="frame">
+        <div id="notiSection">
+            <h2>Dashboard</h2>
+            <p>This is where you'll see upcoming study blocks</p>
+            <ul id="notiList">
+                <li>
+                    <div id="examLabel">
+                        <h3>CS 103 Exam</h3>
+                        <p><i>Next study block in 3 days</i></p>
+                    </div>
+                </li>
+                <li>
+                    <div id="examLabel">
+                        <h3>Math Exam</h3>
+                        <p><i>Next study block in 2 days</i></p>
+                    </div>
+                </li>
+            </ul>
+    
+        </div>
+        <div id="2ndblock">
+            <div id="allExams">
+                <h1>All your exams:</h1>
+                <div id="examList" style="display: flex; gap: 15px; justify-content: start;">
+                
+                    {%for exam in exams%}
+                    <form action="/open_mindmap" method="post">
+                        <input type="hidden" id="exam" name="exam" value="{{exam.id}}"/>
+                        <input type="submit" value="{{exam.name}}"/>
+                    </form>
+                    {%endfor%}
+                
+                </div>
+                <!-- <form action="/open_mindmap">
+                    <button onclick="(() => document.getElementById('examLabel').appendChild(document.createTextNode()))()"> ji</button>
+                    <input type="submit" value="Mindmap" />
+                
+
+                </form> -->
+                
+
+            </div>
+            <div id="examSection">
+                <h1>Add exam</h1>
+                <form action="/" method="post">
+                    <!-- <script>
+                        function updateExams() {
+                            const node = document.createElement("li");
+                            const textnode = document.createTextNode("Water");
+                            node.appendChild(textnode);
+                            document.getElementById("examList").appendChild(node);
+                        }
+                    </script> -->
+                    <h2>Enter course name:</h2>
+                    <input type="text" id="course_name" name="course_name" required><br><br>
+                    <h2>Enter date of exam:</h2>
+                    <input type="date" id="course_date" name="course_date" required><br><br>
+                    <h2>Enter concepts separated by spaces:</h2>
+                    <input type="text" id="course_concepts" name="course_concepts" required><br><br>
+                    <input type="submit" value="Create Exam">
+                </form>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+
+    <!-- <form method="post" action="/process_form">
+        <label for="user_input">Enter something:</label>
+        <input type="text" name="user_input" id="user_input">
+        <button type="submit">Submit</button>
+    </form> -->
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!doctype html>
+<title>Mindmap</title>
+
+<h1>Exam: {{exam.name}}</h1>
+
+<div>
+    <h1>Concepts</h1>
+    {% for concept in exam.concepts %}
+    <form action="/open_concept" method="post">
+        <input type="hidden" id="concept" name="concept" value="{{concept}}"/>
+        <input type="submit" value="{{concept}}"/>
+    </form>
+    {% endfor %}
+</div> 

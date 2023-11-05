@@ -17,13 +17,7 @@
   padding: 30px;
 }
 
-.cont {
-  margin-top: 5vh;
-  margin-bottom: 5vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+
 
 input::file-selector-button {
   border: 0;
@@ -111,4 +105,32 @@ body {
   100% {
       transform: translateX(1);
   }
+}
+
+#frame {
+  display: flex;
+  gap: 20px;
+  justify-content: start;
+  
+  
+  border-radius: 6px;
+  padding: 20px;
+
+}
+
+
+#lectureArea {
+  width: 70vw;
+  background-color:lightpink;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+
+#youtubeArea {
+  width: 70vw;
+  background-color:lightpink;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 8px;
 }

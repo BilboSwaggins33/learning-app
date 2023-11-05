@@ -63,20 +63,29 @@
     <div id="frame">
         <div id="notiSection">
             <h2>Dashboard</h2>
-            <p>This is where you'll see upcoming study blocks</p>
+            <p>This is where you'll see upcoming study blocks for active recall.</p>
             <ul id="notiList">
-                <li>
+                {%for exam in exams%}
                     <div id="examLabel">
-                        <h3>CS 103 Exam</h3>
-                        <p><i>Next study block in 3 days</i></p>
+                        <div style="display: flex; justify-content: space-between;">
+                            <h3>{{ exam.name }}</h3>
+                            <h3>{{ exam.real_date}}</h3>
+                        </div>
+                        <p><i>Next study block in {{ exam.study_times[0] }} days</i></p>
+                        <p>Study blocks in {{exam.study_times}} days</p>
+                        <!-- <div id="scheduleArea"></div>
+                        <button onclick="((() => {document.getElementById('scheduleArea').innerHTML += 'Study blocks in {{exam.study_times}} days'}))()">Show schedule</button>
+                        <form action="/open_schedule" method="post">
+                            <input type="hidden" id="exam" name="exam" value="{{exam.id}}"/>
+                            <input type="submit" value="Show schedule"/>
+                        </form> -->
                     </div>
-                </li>
+                   
+                {%endfor%}
                 <li>
-                    <div id="examLabel">
-                        <h3>Math Exam</h3>
-                        <p><i>Next study block in 2 days</i></p>
-                    </div>
+                    
                 </li>
+                
             </ul>
     
         </div>
@@ -117,8 +126,11 @@
                     <input type="text" id="course_name" name="course_name" required><br><br>
                     <h2>Enter date of exam:</h2>
                     <input type="date" id="course_date" name="course_date" required><br><br>
+                    <h2>Enter confidence (1-10):</h2>
+                    <input type="number" id="course_confidence" name="course_confidence" required><br><br>
                     <h2>Enter concepts separated by spaces:</h2>
                     <input type="text" id="course_concepts" name="course_concepts" required><br><br>
+                    
                     <input type="submit" value="Create Exam">
                 </form>
                 

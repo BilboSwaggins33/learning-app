@@ -31,13 +31,16 @@ def addExam():
     message  = "simple msg"
     name = request.form['course_name']
     date = request.form['course_date']
+    real_date = request.form['course_date']
     date = datetime.strptime(date, '%Y-%m-%d')
     today = datetime.today()
     days_remaining = (date - today).days
     date = days_remaining
+    confidence = request.form['course_confidence']
+
 
     concepts = request.form['course_concepts'].split(" ")
-    ex1 = Exam(name, date, concepts)
+    ex1 = Exam(name, date, concepts, confidence, real_date)
 
     exams.append(ex1)
     print(exams)
@@ -99,6 +102,8 @@ def get_common_words():
         bubble_data_words.append({'left': left, 'top': top, 'keyword' : keywords[x]})
 
     return render_template('common_words.html', common_words=keywords, bubble_data_words=bubble_data_words)
+
+
 
 @app.route("/transcript_file", methods=['POST'])
 def transcribe_file():

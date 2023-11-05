@@ -1,21 +1,21 @@
 from flask import Flask, render_template, request
 from youtube_transcript_api import YouTubeTranscriptApi
-from collections import Counter
 from exam import Exam
 from model import summarize_text
+import os
+os.environ["IMAGEIO_FFMPEG_EXE"] = "/usr/bin/ffmpeg"
 import moviepy.editor as mp
 import speech_recognition as sr
 import random
 from datetime import datetime
 from werkzeug.utils import secure_filename
-import os
 from rake_nltk import Rake
 # from summarize import get_summary
 app = Flask(__name__)
 
 UPLOAD_FOLDER = './audiofiles'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-exams = []
+exams = []  
 
 
 @app.route("/")

@@ -1,14 +1,121 @@
-<!doctype html>
-<title>Mindmap</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mindmap</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        }
 
-<h1>Exam: {{exam.name}}</h1>
+        .bubble {
+        width: 150px;
+        gap: 30px;
+        height: 150px;
+        background-color: #3498db;
+        border-radius: 50%;
+        cursor: grab;
+        user-drag: none;
+        position: absolute;
+        transition: transform 0.3s, background-color 0.3s;
+        }
 
-<div>
-    <h1>Concepts</h1>
-    {% for concept in exam.concepts %}
-    <form action="/open_concept" method="post">
-        <input type="hidden" id="concept" name="concept" value="{{concept}}"/>
-        <input type="submit" value="{{concept}}"/>
-    </form>
-    {% endfor %}
-</div> 
+        .bubble:hover {
+        transform: scale(1.1);
+        background-color: #2980b9;
+        }
+
+        * {
+            font-size: 100%;
+            font-family: 'Poppins';
+        }
+        
+        #concept {
+            background-color: transparent;
+            background-repeat: no-repeat;
+            border: none;
+            outline: none;
+            
+        }
+        #conceptCircle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Exam: {{exam.name}}</h1>
+
+
+    <div>
+        
+        <h1>Concepts</h1>
+        {% for bubble in bubble_data %}
+        <div id="conceptCircle" class="bubble" style="left: {{ bubble.left }}%; top: {{ bubble.top }}%;" id="bubble-{{ loop.index }}">
+            <form action="/open_concept" method="post" id="conceptCircle">
+                <input type="hidden" id="concept" name="concept" value="{{bubble.concept}}"/>
+                <input type="submit" id="concept" value="{{bubble.concept}}"/>
+            </form>
+        </div>
+        {% endfor %}
+        
+        
+            <!-- {% for concept in exam.concepts %}
+            <div class="bubble" style="left: {{ exam.left }}%; top: {{ exam.top }}%;" id="bubble-{{ loop.index }}">
+                <form action="/open_concept" method="post">
+                    <input type="hidden" id="concept" name="concept" value="{{concept}}"/>
+                    <input type="submit" value="{{concept}}"/>
+                </form>
+            </div>
+            {% endfor %} -->
+         
+
+        
+        
+        <script>
+            const bubble = document.getElementById('bubble');
+
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            bubble.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - bubble.getBoundingClientRect().left;
+            offsetY = e.clientY - bubble.getBoundingClientRect().top;
+            bubble.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+
+            bubble.style.left = x + 'px';
+            bubble.style.top = y + 'px';
+            });
+
+            document.addEventListener('mouseup', () => {
+            isDragging = false;
+            bubble.style.cursor = 'grab';
+            });
+
+
+        </script>
+    </div> 
+</body>
+
+
+</html>

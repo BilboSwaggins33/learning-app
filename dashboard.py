@@ -5,6 +5,7 @@ from exam import Exam
 from model import summarize_text
 import moviepy.editor as mp
 import speech_recognition as sr
+import random
 from werkzeug.utils import secure_filename
 import os
 from rake_nltk import Rake
@@ -42,7 +43,16 @@ def addExam():
 def mindmap():
     examId = request.form['exam']
     ex = [e for e in exams if e.id == int(examId)]
-    return render_template('mindmap.html', exam=ex[0])
+    bubble_data = []
+    # ex.
+
+    length = len(ex[0].concepts)
+    
+    for x in range(length):
+        left = random.randint(0, 70)  # Adjust these values for random positioning
+        top = random.randint(0, 70)
+        bubble_data.append({'left': left, 'top': top, 'concept': ex[0].concepts[x], 'obj': ex[0], 'index': x})
+    return render_template('mindmap.html', exam=ex[0], bubble_data=bubble_data)
 
 @app.route("/open_concept", methods=['POST'])
 def concept():
